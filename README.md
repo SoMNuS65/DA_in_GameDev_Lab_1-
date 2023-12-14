@@ -30,6 +30,25 @@ TOTAL WAR: ROME II - компьютерная игра жанра стратег
 ### С помощью скрипта на языке Python заполните google-таблицу данными, описывающими выбранную игровую переменную в выбранной игре (в качестве таких переменных может выступать игровая валюта, ресурсы, здоровье и т.д.). Средствами google-sheets визуализируйте данные в google-таблице (постройте график, диаграмму и пр.) для наглядного представления выбранной игровой величины.
 
 - Скрипт на Python генерирует рандомное значение общественного порядка в диапазоне от -100 до 100 включительно:
+```python
+import gspread
+import numpy as np
+gc = gspread.service_account(filename='urfudatascienceshayhutdinov-7bf018986d8d.json')
+sh = gc.open("UnityWorkshop2")
+current_mood_of_people = np.random.randint(-100, 101, 11)
+mon = list(range(1,11))
+i = 0
+while i <= len(mon):
+    i += 1
+    if i == 0:
+        continue
+    else:
+        tempInf = current_mood_of_people[i-1]
+        tempInf = str(tempInf)
+        sh.sheet1.update(('A' + str(i)), str(i))
+        sh.sheet1.update(('B' + str(i)), str(tempInf))
+        print(tempInf)
+```
 
 
 ## Задание 3
